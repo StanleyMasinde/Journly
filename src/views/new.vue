@@ -2,6 +2,7 @@
 import { reactive, Ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { journlyStore } from '../stores/journly'
+import {CreateJournal} from '../interfaces'
 
 const note: CreateJournal = reactive({
     body: '',

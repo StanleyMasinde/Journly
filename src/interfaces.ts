@@ -1,7 +1,7 @@
 /**
  * Create journal interface
  */
-interface CreateJournal {
+export interface CreateJournal {
     body: string,
     dateTime: Date
 }
@@ -9,6 +9,6 @@ interface CreateJournal {
 /**
  * Journal interface
  */
-interface Journal extends CreateJournal {
+export interface Journal extends CreateJournal {
     id: number
 }

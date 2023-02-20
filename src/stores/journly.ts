@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref, Ref } from "vue";
+import { Journal, CreateJournal } from "../interfaces";
 
 
 export const journlyStore = defineStore('journly', () => {
