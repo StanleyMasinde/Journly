@@ -13,6 +13,7 @@ if (window.indexedDB) {
     request.onupgradeneeded = (ev) => {
         const db = request.result
         const objectStore = db.createObjectStore('journals', {keyPath: 'id', autoIncrement: true})
+        objectStore.createIndex('title', 'title')
         objectStore.createIndex('body', 'body')
         objectStore.createIndex('dateTime', 'dateTime')
     }
