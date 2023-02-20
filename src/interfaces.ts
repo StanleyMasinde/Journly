@@ -2,6 +2,7 @@
  * Create journal interface
  */
 export interface CreateJournal {
+    title: string,
     body: string,
     dateTime: Date
 }

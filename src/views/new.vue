@@ -2,9 +2,10 @@
 import { reactive, Ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { journlyStore } from '../stores/journly'
-import {CreateJournal} from '../interfaces'
+import { CreateJournal } from '../interfaces'
 
 const note: CreateJournal = reactive({
+    title: '',
     body: '',
     dateTime: new Date()
 })
@@ -26,7 +27,8 @@ const note: CreateJournal = reactive({
     <div>
         <textarea v-model="note.body" autofocus class="w-full border-[0px] ring-0 focus:ring-0 h-screen"
             placeholder="Jot something down"></textarea>
-        <button @click.prevent="($event) => journlyStore().createJournal(note)" class="fixed bottom-2 inset-x-2 bg-primary text-white py-2 rounded-xl">
+        <button @click.prevent="($event) => journlyStore().createJournal(note)"
+            class="fixed bottom-2 inset-x-2 bg-primary text-white py-2 rounded-xl">
             Save
         </button>
     </div>
