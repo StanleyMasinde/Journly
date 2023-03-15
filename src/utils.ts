@@ -25,6 +25,29 @@ export function getAllJournals(): Promise<Journal[]> {
 }
 
 /**
+ * Get a journal by id
+ */
+export function getJournalById(id: number): Promise<Journal> {
+    return new Promise((resolve, reject) => {
+        const idbRequest = indexedDB.open('journly', 1)
+        idbRequest.onsuccess = () => {
+            const transaction = idbRequest.result.transaction('journals', 'readonly')
+            const query = transaction.objectStore('journals')
+                .get(id)
+            query.addEventListener('success', () => {
+                resolve(query.result)
+            })
+            query.addEventListener('error', (ev) => {
+                reject(ev)
+            })
+        }
+        idbRequest.onerror = (err) => {
+            reject(err)
+        }
+    })
+}
+
+/**
  * Date formatter
  */
 export function formatDate(date: Date) {

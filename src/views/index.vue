@@ -12,11 +12,11 @@ onMounted(async () => {
 </script>
 <template>
     <div class="mb-16 flex flex-col gap-3 p-2">
-        <div v-for="journal in journals" class="paper p-3 drop-shadow-md">
+        <RouterLink :to="`/read/${journal.id}`" v-for="journal in journals" class="paper p-3 drop-shadow-md">
             <h2 class="font-bold text-lg">{{ journal.title }}</h2>
             <h3 class="text-red-400 font-semibold">{{ formatDate(journal.dateTime) }}</h3>
             <p class="line-clamp-3">{{ journal.body }}</p>
-        </div>
+        </RouterLink>
     </div>
     <BottomNav />
 </template>
