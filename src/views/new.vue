@@ -6,7 +6,6 @@ import { CreateJournal } from '../interfaces'
 const note: CreateJournal = reactive({
     title: '',
     body: '',
-    dateTime: new Date()
 })
 const successful: Ref<boolean> = ref(false)
 
@@ -17,7 +16,7 @@ const createJournal = (journal: CreateJournal) => {
             transaction.objectStore('journals')
                 .add({
                     body: journal.body,
-                    dateTime: journal.dateTime
+                    dateTime: new Date()
                 })
             transaction.oncomplete = () => {
                 successful.value = true
