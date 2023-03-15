@@ -29,10 +29,9 @@ export function getAllJournals(): Promise<Journal[]> {
  */
 export function formatDate(date: Date) {
     return Intl.DateTimeFormat('default', {
-        weekday: 'long',
-        month: 'short',
-        year: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
     }).format(date)
 }
