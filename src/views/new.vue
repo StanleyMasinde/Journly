@@ -10,27 +10,27 @@ const note: CreateJournal = reactive({
 const successful: Ref<boolean> = ref(false)
 
 const createJournal = (journal: CreateJournal) => {
-        const idbRequest = indexedDB.open('journly', 1)
-        idbRequest.onsuccess = (ev) => {
-            const transaction = idbRequest.result.transaction('journals', 'readwrite')
-            transaction.objectStore('journals')
-                .add({
-                    body: journal.body,
-                    dateTime: new Date()
-                })
-            transaction.oncomplete = () => {
-                successful.value = true
-                note.body = note.title = ''
-                setTimeout(() => {
-                    successful.value =false
-                }, 5000);
-            }
+    const idbRequest = indexedDB.open('journly', 1)
+    idbRequest.onsuccess = (ev) => {
+        const transaction = idbRequest.result.transaction('journals', 'readwrite')
+        transaction.objectStore('journals')
+            .add({
+                body: journal.body,
+                dateTime: new Date()
+            })
+        transaction.oncomplete = () => {
+            successful.value = true
+            note.body = note.title = ''
+            setTimeout(() => {
+                successful.value = false
+            }, 5000);
         }
     }
+}
 
 </script>
 <template>
-    <nav class="shadow-md py-2">
+    <nav class="shadow-md py-2 sticky top-0 inset-x-0 bg-white">
         <ul class="flex justify-between">
             <li>
                 <RouterLink to="/" class="h-full">
@@ -42,15 +42,15 @@ const createJournal = (journal: CreateJournal) => {
             </li>
         </ul>
     </nav>
-    <div id="alert" v-if="successful" class="bg-secondary text-primary py-2 text-center m-2 rounded-lg">
+    <div id="alert" v-if="successful" class="bg-secondary text-primary py-2 text-center m-2 rounded-lg sticky top-0">
         <h1>Entry added successfuly</h1>
     </div>
-    <div>
+    <div class="sticky top-0 mb-16">
         <textarea v-model="note.body" autofocus class="w-full border-[0px] ring-0 focus:ring-0 h-screen"
             placeholder="Jot something down"></textarea>
-        <button :disabled="note.body == ''" id="save" @click.prevent="($event) => createJournal(note)"
-            class="fixed bottom-2 inset-x-2 bg-primary text-white py-2 rounded-xl disabled:bg-primary/50">
-            Save
-        </button>
     </div>
+    <button :disabled="note.body == ''" id="save" @click.prevent="($event) => createJournal(note)"
+        class="fixed bottom-2 inset-x-2 bg-primary text-white py-2 rounded-xl disabled:bg-primary/50">
+        Save
+    </button>
 </template>

@@ -10,5 +10,6 @@ export interface CreateJournal {
  * Journal interface
  */
 export interface Journal extends CreateJournal {
-    id: number
+    id: number,
+    dateTime: Date
 }

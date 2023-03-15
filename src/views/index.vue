@@ -11,9 +11,11 @@ onMounted(async () => {
 })
 </script>
 <template>
-    <div v-for="journal in journals" class="border rounded-lg px-2 py-1 m-3">
-        <h1>{{ formatDate(journal.dateTime) }}</h1>
-        <p>{{ journal.body }}</p>
+    <div class="mb-16 flex flex-col gap-3 p-2">
+        <div v-for="journal in journals" class="border rounded-lg px-2 py-1 mx-3">
+            <h1 class="text-red-500">{{ formatDate(journal.dateTime) }}</h1>
+            <p class="line-clamp-3">{{ journal.body }}</p>
+        </div>
     </div>
     <BottomNav />
 </template>
