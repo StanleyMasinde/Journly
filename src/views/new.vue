@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { title } from 'process';
 import { reactive, ref, Ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { CreateJournal } from '../interfaces'
@@ -50,7 +49,7 @@ const createJournal = (journal: CreateJournal) => {
     <div class="sticky top-0 mb-16 flex flex-col gap-3 my-2">
         <div class="px-2">
             <label for="title">Title(optional)</label>
-            <input v-model="title" class="w-full rounded-lg" type="text" maxlength="30" placeholder="A brand new day">
+            <input v-model="note.title" class="w-full rounded-lg" type="text" maxlength="30" placeholder="A brand new day">
         </div>
         <div>
             <textarea v-model="note.body" autofocus class="w-full border-[0px] ring-0 focus:ring-0 h-screen"

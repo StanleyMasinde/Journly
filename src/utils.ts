@@ -12,7 +12,7 @@ export function getAllJournals(): Promise<Journal[]> {
             const query = transaction.objectStore('journals')
                 .getAll()
             query.addEventListener('success', () => {
-                resolve(query.result)
+                resolve(query.result.reverse())
             })
             query.addEventListener('error', (ev) => {
                 reject(ev)
